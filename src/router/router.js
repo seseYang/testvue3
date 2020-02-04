@@ -4,14 +4,14 @@ import VueRouter from "vue-router";
 import News from "../components/News";
 import vido from '../components/vido';
 import me from '../components/Me';
-import details from '../components/newsDetails';
+import details from "../components/NewsDetails";
 
 Vue.use(VueRouter);//使用router
 const routes=[
     {path:"/news",component:News},
     {path:"/vido",component:vido},
     {path:"/Me",component:me},
-    {path:"/details",component:details},
+    {path:'/details',name:'details',component:details},
     //     children:[
     //         {path:"/my-msg",component:myMsg},
     //         {path:"/my-code",component:myCode},

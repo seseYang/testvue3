@@ -29,7 +29,7 @@
                                       finished-text="没有更多了"
                                       @load="onLoad">
 
-                                <van-row @on="newsDateils(item)" v-for="item in list">
+                                <van-row @click="newsDateils(item)" v-for="item in list">
                                     <van-col span="14">
                                         <a v-text="item.content" class="van-multi-ellipsis--l3 font-set">类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容类容</a>
                                         <p span="24">
@@ -100,7 +100,6 @@
 
                         let data = datas.data;
                         console.log(data);
-
                         let array = data.value.content;
 
                         for (var i = 0; i < array.length; i++) {
@@ -119,7 +118,7 @@
 
             },
             newsDateils(data){
-                this.$router.push({ name: '/details'})
+               this.$router.push({name:"details",params:data})
             }
 
         }
