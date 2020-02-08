@@ -20,6 +20,20 @@
       "unicode_decimal": 58910
     },
     {
+      "icon_id": "986184",
+      "name": "微信",
+      "font_class": "weixin-copy",
+      "unicode": "e652",
+      "unicode_decimal": 58962
+    },
+    {
+      "icon_id": "1002158",
+      "name": "QQ",
+      "font_class": "qq",
+      "unicode": "e6b4",
+      "unicode_decimal": 59060
+    },
+    {
       "icon_id": "1185487",
       "name": "赞",
       "font_class": "zan",
@@ -81,6 +95,13 @@
       "font_class": "fenxiang",
       "unicode": "e672",
       "unicode_decimal": 58994
+    },
+    {
+      "icon_id": "8759836",
+      "name": "QQ",
+      "font_class": "QQ",
+      "unicode": "e698",
+      "unicode_decimal": 59032
     },
     {
       "icon_id": "10613990",

@@ -8,7 +8,7 @@
             </van-col>
         </van-row>
 
-        <van-tabbar  v-model="active">
+        <van-tabbar v-if="bottomTbl"  v-model="active">
             <van-tabbar-item to="/news" name="news" info="">
                 <span>新闻</span>
                 <img slot="icon" v-if="active!='news'" src="./assets/svg/news.png">
@@ -36,15 +36,23 @@
 </template>
 
 <script>
-
+    import Bus from "./model/Bus";
     export default {
         name: "app",
         data() {
             return {
                 active: 'news'
+                ,bottomTbl:true
+                ,login:false
             }
-        },
-        methods: {
+        }
+        ,mounted(){
+            Bus.$emit("login",this.login);//发送登录状态
+            Bus.$on('bottomTbl',(data)=>{
+                this.bottomTbl=data;
+            })
+        }
+        ,methods: {
             abc(){
                 console.log(this.active);
             }

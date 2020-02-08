@@ -1,6 +1,6 @@
 <template>
     <div>
-        <van-row >
+        <van-row>
             <van-col class="img-siae" span="24">
                 <van-col span="3">
                     <img class="img-padding-left" src="../assets/svg/timg.png">
@@ -42,11 +42,18 @@
                                     </van-col>
                                     <van-col span="10">
                                         <van-image
-                                                width="100%"
+                                                width="100"
                                                 height="100"
                                                 lazy-load
-                                                src="https://data.photo-ac.com/data/thumbnails/0b/0b0b510d2e4a57c0d543ee8df75558b0_w.jpeg">
-
+                                                v-if="item.imagesList.length==0
+                                                ? item.imagesList.findPath=''
+                                                : item.imagesList.findPath=item.imagesList[0].findPath"
+                                                :src="item.imagesList.findPath"
+                                        >
+                                            <template v-slot:loading>
+                                                <van-loading type="spinner" size="20"/>
+                                            </template>
+                                            <template v-slot:error>加载失败</template>
                                         </van-image>
                                     </van-col>
                                 </van-row>
@@ -65,6 +72,7 @@
 </template>
 
 <script>
+    import Bus from "../model/Bus";
     export default {
         name: "News",
         data() {
@@ -99,7 +107,6 @@
                     .then(function (datas) {
 
                         let data = datas.data;
-                        console.log(data);
                         let array = data.value.content;
 
                         for (var i = 0; i < array.length; i++) {
@@ -117,8 +124,9 @@
 
 
             },
-            newsDateils(data){
-               this.$router.push({name:"details",params:data})
+            newsDateils(datas) {
+                Bus.$emit("bottomTbl",false);
+                this.$router.push({name: "details", params: datas})
             }
 
         }
@@ -168,7 +176,6 @@
             height: 3.55rem;
             margin-left: 1rem;
         }
-
 
 
         .van-search {
