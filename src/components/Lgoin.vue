@@ -36,8 +36,8 @@
         name: "Lgoin"
         , data() {
             return {
-                code: ""
-                , password: ""
+                code: "admin"
+                , password: "123123"
             }
         }
         , methods: {

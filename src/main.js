@@ -41,8 +41,9 @@ Vue.use(VueResource);//使用Resource
 //vant ui
 import Vant from 'vant';
 import 'vant/lib/index.css';
-
+import { DatetimePicker } from 'vant';
 Vue.use(Vant);
+Vue.use(DatetimePicker);
 //vant end
 Vue.config.productionTip = false;
 

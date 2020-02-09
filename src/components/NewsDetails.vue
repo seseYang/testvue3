@@ -71,7 +71,21 @@
                 <van-col span="24">
                     <h6 style="text-align: center" v-if="item.commenttblList.length==0">暂时还没有评论。</h6>
                     <van-skeleton title avatar :row="3"
-                                  :loading="loading2">
+                                  :loading="loading2" v-for="da in item.commenttblList">
+                        <van-col span="5">
+                            <van-image
+                                    width="5rem"
+                                    height="5rem"
+                                    lazy-load
+                                    round
+                                    :src="da.uId.icon"
+
+                            />
+                        </van-col>
+                        <van-col span="10">
+                            <span style="vertical-align: -2.3rem;" v-text="da.commentContent"></span>
+                        </van-col>
+
 
                     </van-skeleton>
 
@@ -79,6 +93,12 @@
             </van-row>
         </van-row>
 
+        <van-field
+                v-model="comm"
+                placeholder="我来说两句"
+        >
+            <van-button slot="button" @click="submit" round size="small" type="primary">评论</van-button>
+        </van-field>
     </div>
 </template>
 
@@ -94,6 +114,7 @@
                 loading: true,
                 loading2: true,
                 contentArr: []
+                , comm: ""
             }
         },
         created() {
@@ -111,13 +132,29 @@
             onClickLeft() {
                 this.$root.index_bottomTbl = true;
                 window.history.back(-1);
-                // this.$router.push("/news")
+            }, submit() {
+                if (this.$root.userID == undefined || this.$root.userID == null|| this.$root.userID =="") {
+                    this.$router.push("Me");
+                    return false;
+                } else {
+                    this.$axios.post(this.beaspath + "main/comm/insert", this.$qs.stringify({
+                        commentContent: this.comm,
+                        NewsId: this.item.id,
+                        sessionId: this.$root.userID
+                    }))
+                        .then(res => {
+                            console.log(res)
+                        }).catch(error => {
+                        console.log(error);
+                    })
+                }
             }
             // onClickRight() {
             //     Toast('按钮');
             // }
 
         }
+
     }
 </script>
 

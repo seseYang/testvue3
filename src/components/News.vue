@@ -67,7 +67,6 @@
             </van-col>
         </van-row>
 
-
     </div>
 </template>
 
@@ -77,6 +76,7 @@
         name: "News",
         data() {
             return {
+                comm:"",
                 list: [],
                 loading: false,//自定义底部加载中提示
                 finished: false,//自定义加载完成后的提示文案

@@ -94,8 +94,6 @@
         }
         ,created() {
         }
-        , mounted() {
-        }
         , methods: {
             onChange(index) {
                 console.log(this.active)
