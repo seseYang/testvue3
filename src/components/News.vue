@@ -95,17 +95,18 @@
                 this.$toast(title);
             },
             onLoad() {
+                this.value="请求开始"
                 const _this = this;
                 const size = 1;
                 var params = this.$qs.stringify({page: _this.list.length + 1, limit: size})
 
                 this.$axios({
                     method: "post"
-                    , url: "http://127.0.0.1:8848/news/main/news/findAll"
+                    , url: this.beaspath+"main/news/findAll"
                     , data: params
                 })
                     .then(function (datas) {
-
+                        _this.value="请求完成"
                         let data = datas.data;
                         let array = data.value.content;
 
@@ -119,13 +120,14 @@
                             return;
                         }
                     }).catch(function (error) {
-                    console.log(error);
+                        console.log(error)
+                    _this.value="请求异常"+error;
                 });
 
 
             },
             newsDateils(datas) {
-                Bus.$emit("bottomTbl",false);
+                this.$root.index_bottomTbl=false;
                 this.$router.push({name: "details", params: datas})
             }
 

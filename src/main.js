@@ -6,6 +6,7 @@ import VueResource from "vue-resource";
 import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css';
 import {Field} from "mint-ui";
+
 Vue.use(Mint);
 Vue.component(Field.name, Field);
 //mint ui end
@@ -18,12 +19,13 @@ import './assets/icon/iconfont.css'
 //矢量图标 end
 
 
-
 //axios 请求插件 get,post 。。。
 import axios from 'axios';
+
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 import qs from 'qs'
+
 Vue.prototype.$axios = axios;
 Vue.prototype.$qs = qs;
 //axios end
@@ -33,7 +35,7 @@ Vue.prototype.$qs = qs;
 import router from "./router/router";
 
 
-Vue.prototype.beaspath ="192.168.2.104:8848/news/";
+Vue.prototype.beaspath = "http://192.168.43.171:8848/news/";
 Vue.use(VueResource);//使用Resource
 //router end
 //vant ui
@@ -44,8 +46,17 @@ Vue.use(Vant);
 //vant end
 Vue.config.productionTip = false;
 
+//全局方法
 
 new Vue({
-    router,//实例化router
-    render: h => h(App),
+    router//实例化router
+    , data() {
+        return {
+            userData: ""//登录用户信息
+            , userID: ""//登录toking
+            , loginState: false//登录状态
+            ,index_bottomTbl:true//关闭屏幕下边的标签栏
+        }
+    }
+    , render: h => h(App),
 }).$mount('#app')

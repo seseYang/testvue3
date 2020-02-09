@@ -2,13 +2,15 @@
     <div>
         <!--            right-text="按钮"-->
         <!--            @click-right="onClickRight"-->
-        <van-nav-bar
-                title="标题"
-                left-text="返回"
-                left-arrow
-                @click-left="onClickLeft"
+        <van-sticky>
+            <van-nav-bar
+                    title="标题"
+                    left-text="返回"
+                    left-arrow
+                    @click-left="onClickLeft"
 
-        />
+            />
+        </van-sticky>
         <van-row class="content-Details">
 
 
@@ -66,7 +68,7 @@
             <van-row>
                 <br>
                 <h5>全部评论({{item.commenttblList.length}})</h5>
-                <van-col span="24" >
+                <van-col span="24">
                     <h6 style="text-align: center" v-if="item.commenttblList.length==0">暂时还没有评论。</h6>
                     <van-skeleton title avatar :row="3"
                                   :loading="loading2">
@@ -83,6 +85,7 @@
 <script>
     import {Toast} from "vant";
     import Bus from "../model/Bus";
+
     export default {
         name: "NewsDetails"
         , data() {
@@ -101,13 +104,14 @@
                 _this.loading = false;
             }
         }
-        ,methods(){
+        , methods() {
             console.log(this.$root.active);
         }
-        ,methods: {
+        , methods: {
             onClickLeft() {
-                Bus.$emit("bottomTbl",true);
-                this.$router.push("/news")
+                this.$root.index_bottomTbl = true;
+                window.history.back(-1);
+                // this.$router.push("/news")
             }
             // onClickRight() {
             //     Toast('按钮');
